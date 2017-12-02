@@ -26,8 +26,6 @@ checksum = sum([max(row) - min(row) for row in numbers])
 
 print(checksum)
 
-total = 0
-
 def reducer(memo, row):
     for i, j in product(row, row):
         if i != j and i / j == i // j:
