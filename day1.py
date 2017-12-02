@@ -41,4 +41,4 @@ def circular_sum(offset=1):
     return reduce(reducer, zip(numbers, numbers[offset:] + numbers[:offset]), 0)
 
 print(circular_sum())
-print(circular_sum(offset=len(numbers)/2))
+print(circular_sum(offset=len(numbers)//2))
