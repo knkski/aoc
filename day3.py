@@ -1,54 +1,34 @@
-from itertools import islice, count
+from math import floor, sqrt
 
 number = 347991
 
 
-def spiral_coords():
-    '''Yields coordinates in a spiral pattern.'''
-    x, y = 0, 0
-    direction = 0
+def get_coords(n):
+    '''Closed form solution.
 
-    yield 0, 0
+    Taken from here: https://danpearcymaths.wordpress.com/2012/09/30/infinity-programming-in-geogebra-and-failing-miserably/
+    '''
 
-    for i in count(1):
-        for _ in range(2):
-            for j in range(i):
-                if direction == 0:
-                    x += 1
-                elif direction == 1:
-                    y += 1
-                elif direction == 2:
-                    x -= 1
-                elif direction == 3:
-                    y -= 1
-                else:
-                    raise Exception("Something went horribly wrong!")
+    p = floor(sqrt(4*n + 1))
+    q = n - floor(p ** 2 / 4)
+    z = q * 1j ** p + (floor((p + 2) / 4) - 1j * floor((p + 1) / 4)) * 1j ** (p - 1)
+    return int(z.real), int(z.imag)
 
-                yield x, y
-
-            direction += 1
-            direction %= 4
-
-# Calculate the spiral coordinates of our number, then sum the difference
-# from (0, 0). Subtract one first since we want to slice up to but not
-# including the number we want.
-coords = spiral_coords()
-num_coords = next(islice(coords, number - 1, None))
-print(sum(abs(c) for c in num_coords))
+print(sum(map(abs, get_coords(number))))
 
 
 # Iteratively calculate each sum. Assumes the answer can be found in a
 # 11x11 grid, which turns out to be the case
-coords = spiral_coords()
-
-grid = [[0] * 11 for row in range(11)]
+size_x, size_y = 11, 11
+grid = [[0] * size_x for row in range(size_y)]
 
 x = 5
 y = 5
 
 grid[y][x] = 1
 
-for coords in spiral_coords():
+for num in range(size_x * size_y):
+    coords = get_coords(num)
     current_x, current_y = x + coords[0], y - coords[1]
 
     total = \
