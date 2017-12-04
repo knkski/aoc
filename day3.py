@@ -53,13 +53,13 @@ for coords in spiral_coords():
 
     total = \
         grid[current_y - 1][current_x - 1] + \
-        grid[current_y - 1][current_x] + \
+        grid[current_y - 1][current_x    ] + \
         grid[current_y - 1][current_x + 1] + \
-        grid[current_y][current_x - 1] + \
-        grid[current_y][current_x] + \
-        grid[current_y][current_x + 1] + \
+        grid[current_y    ][current_x - 1] + \
+        grid[current_y    ][current_x    ] + \
+        grid[current_y    ][current_x + 1] + \
         grid[current_y + 1][current_x - 1] + \
-        grid[current_y + 1][current_x] + \
+        grid[current_y + 1][current_x    ] + \
         grid[current_y + 1][current_x + 1]
 
     grid[current_y][current_x] = total
