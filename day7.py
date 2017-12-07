@@ -52,14 +52,13 @@ def get_correct_weight(names, weights):
     print(bad_child_weight + adjustment)
 
 
-def find_bad_child(name):
+def find_incorrect_weight(name):
     program = programs[name]
 
     if not program['children']:
         return program['weight']
 
-
-    child_weights = [find_bad_child(child) for child in program['children']]
+    child_weights = [find_incorrect_weight(child) for child in program['children']]
 
     # If the list of weights are not identical, we've found the incorrect node.
     # Since this is recursive and we want to stop the first time we encounter
@@ -71,6 +70,6 @@ def find_bad_child(name):
     return program['weight'] + sum(child_weights)
 
 try:
-    find_bad_child(root)
+    find_incorrect_weight(root)
 except StopIteration:
     pass
