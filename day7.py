@@ -13,6 +13,7 @@ with open('day7_input.txt') as f:
 # }
 
 def parse(program):
+    # Thanks to llimllib for this
     name, weight, *children = re.findall('(\w+)', program)
 
     return (name, {
