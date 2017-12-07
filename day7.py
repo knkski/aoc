@@ -13,11 +13,11 @@ with open('day7_input.txt') as f:
 # }
 
 def parse(program):
-    matches = re.match(r'(\w+) \((\d+)\)( -> ([\w, ]+))?', program)
+    name, weight, *children = re.findall('(\w+)', program)
 
-    return (matches[1], {
-        'weight': int(matches[2]),
-        'children': [m.strip() for m in (matches[4] or '').split(',') if m.strip()],
+    return (name, {
+        'weight': int(weight),
+        'children': children,
     })
 
 programs = dict(
