@@ -1,6 +1,6 @@
 import re
 
-with open('day7_input.txt') as f:
+with open('day7.txt') as f:
     programs = f.readlines()
 
 # Turn programs into a dict that looks like this:

@@ -1,7 +1,7 @@
 from operator import add, sub
 from collections import defaultdict
 
-with open('day8_input.txt') as f:
+with open('day8.txt') as f:
     instructions = f.readlines()
 
 registers = defaultdict(int)

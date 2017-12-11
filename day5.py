@@ -1,9 +1,11 @@
 from itertools import count
 
-def calculate_jumps(incrementer):
-    with open('day5_input.txt') as f:
-        offsets = [int(offset) for offset in f.readlines()]
 
+with open('day5.txt') as f:
+    offsets = [int(offset) for offset in f.readlines()]
+
+
+def calculate_jumps(offsets, incrementer):
     current = 0
 
     for i in count():
@@ -12,8 +14,7 @@ def calculate_jumps(incrementer):
             offsets[current] += incrementer(jump)
             current += jump
         except IndexError:
-            print(i)
-            break
+            return i
 
-calculate_jumps(lambda j: 1)
-calculate_jumps(lambda j: -1 if j >= 3 else 1)
+print(calculate_jumps(offsets[:], lambda j: 1))
+print(calculate_jumps(offsets[:], lambda j: -1 if j >= 3 else 1))

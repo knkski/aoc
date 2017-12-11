@@ -1,7 +1,7 @@
 from itertools import count
 
-blocks = '0 5 10 0 11 14 13 4 11 8 8 7 1 4 12 11'
-blocks = list(map(int, blocks.split(' ')))
+with open('day6.txt') as f:
+    blocks = list(map(int, f.read().split(' ')))
 
 memory = []
 

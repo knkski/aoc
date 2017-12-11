@@ -1,4 +1,4 @@
-with open('day4_input.txt') as f:
+with open('day4.txt') as f:
     phrases = [l.strip() for l in f.readlines()]
 
 
