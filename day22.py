@@ -28,24 +28,22 @@ def infect(grid, bursts=10000, smart=False):
     for _ in range(bursts):
         node = grid.get(position, 0)
 
-        if node == 0:
+        if node == CLEAN:
             direction -= 1
             grid[position] = WEAKENED if smart else INFECTED
 
             if not smart:
                 total += 1
 
-        elif node == 1:
+        elif node == INFECTED:
             direction += 1
             grid[position] = FLAGGED if smart else CLEAN
 
-        elif node == 2:
+        elif node == WEAKENED:
             grid[position] = INFECTED
+            total += 1
 
-            if node != INFECTED:
-                total += 1
-
-        elif node == 3:
+        elif node == FLAGGED:
             direction += 2
             grid[position] = CLEAN
 

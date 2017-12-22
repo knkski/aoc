@@ -1,0 +1,10 @@
+[package]
+name = "aoc2017"
+version = "0.1.0"
+authors = ["knkski"]
+
+[dependencies]
+
+[[bin]]
+name = "day22"
+path = "src/day22.rs"
