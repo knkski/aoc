@@ -4,15 +4,16 @@ number = 347991
 
 
 def get_coords(n):
-    '''Closed form solution.
+    """Closed form solution.
 
     Taken from here: https://danpearcymaths.wordpress.com/2012/09/30/infinity-programming-in-geogebra-and-failing-miserably/
-    '''
+    """
 
     p = floor(sqrt(4*n + 1))
     q = n - floor(p ** 2 / 4)
     z = q * 1j ** p + (floor((p + 2) / 4) - 1j * floor((p + 1) / 4)) * 1j ** (p - 1)
     return int(z.real), int(z.imag)
+
 
 print(sum(map(abs, get_coords(number))))
 
