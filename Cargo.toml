@@ -4,7 +4,13 @@ version = "0.1.0"
 authors = ["knkski"]
 
 [dependencies]
+flame = '*'
+
 
 [[bin]]
 name = "day22"
 path = "src/day22.rs"
+
+[[bin]]
+name = "day25"
+path = "src/day25.rs"
