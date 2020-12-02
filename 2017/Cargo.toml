@@ -2,6 +2,7 @@
 name = "aoc2017"
 version = "0.1.0"
 authors = ["knkski"]
+edition = "2018"
 
 [dependencies]
 flame = '*'

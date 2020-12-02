@@ -1,0 +1,12 @@
+[package]
+name = "aoc2020"
+version = "0.1.0"
+authors = ["knkski"]
+edition = "2018"
+
+[dependencies]
+itertools = "0.9"
+
+[[bin]]
+name = "day01"
+path = "src/day01.rs"
