@@ -17,5 +17,8 @@ print(weakness)
 for i in range(len(lines)):
     for j in range(i, len(lines)):
         span = lines[i:j]
+        if sum(span) > weakness:
+            break
         if len(span) > 1 and sum(span) == weakness:
             print(min(span) + max(span))
+            break
