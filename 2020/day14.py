@@ -19,8 +19,12 @@ def expand_mask(mask):
 
     # Generate a bitstring for each value of [0, 2**count]. Then,
     # scatter each bit in the string amongst each `X` in the input mask.
+    # Additionally, convert 0's to `-`, which can be ignored.
     return [
-        [next(magic) if char == "X" else char if char == "1" else None for char in mask]
+        "".join(
+            next(magic) if char == "X" else char if char == "1" else "-"
+            for char in mask
+        )
         for i in range(2 ** count)
         if (magic := iter("{0:0{1}b}".format(i, count)))
     ]
