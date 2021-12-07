@@ -1,7 +1,7 @@
 from collections import Counter
 
 with open("day06.txt") as f:
-    counts = Counter(map(int, f.read().strip().split(',')))
+    counts = Counter(map(int, f.read().strip().split(",")))
 
 for i in range(256):
     if i == 80:
