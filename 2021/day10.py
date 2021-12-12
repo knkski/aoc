@@ -1,3 +1,5 @@
+from functools import reduce
+
 with open("day10.txt") as f:
     lines = [line.strip() for line in f.readlines()]
 
@@ -31,31 +33,18 @@ for line in lines:
             case ['>', _]:
                 invalid += 25137
                 break
-            case _:
-                0/0
+            case other:
+                raise ValueError(other)
     else:
         if len(stack):
             incomplete.append(stack)
 
 print(invalid)
 
-scores = []
-for stack in incomplete:
-    score = 0
-    for ch in reversed(stack):
-        score *= 5
-        match ch:
-            case '(':
-                score += 1
-            case '[':
-                score += 2
-            case '{':
-                score += 3
-            case '<':
-                score += 4
-            case _:
-                0/0
-    scores.append(score)
-scores.sort()
 
+def score(memo, ch):
+    return memo * 5 + ' ([{<'.find(ch)
+
+
+scores = list(sorted(reduce(score, reversed(stack), 0) for stack in incomplete))
 print(scores[len(scores)//2])
