@@ -3,20 +3,20 @@ from collections import Counter, defaultdict
 with open('day14.txt') as f:
     template, pairs = f.read().split('\n\n')
     pairs = dict(p.split(' -> ') for p in pairs.splitlines())
-    template = Counter(''.join(p) for p in zip(template, template[1:]))
+    polymer = Counter(''.join(p) for p in zip(template, template[1:]))
 
 
-def grow(tmpl, n=10):
+def grow(poly, n=10):
     for i in range(n):
         result = defaultdict(int)
 
-        for pair, count in tmpl.items():
+        for pair, count in poly.items():
             insert = pairs[pair]
 
             result[pair[0] + insert] += count
             result[insert + pair[1]] += count
 
-        tmpl = result
+        poly = result
 
     totals = defaultdict(int)
     for pair, count in result.items():
@@ -25,5 +25,5 @@ def grow(tmpl, n=10):
     return max(totals.values()) - min(totals.values())
 
 
-print(grow(template.copy()))
-print(grow(template.copy(), n=40))
+print(grow(polymer.copy()))
+print(grow(polymer.copy(), n=40))
