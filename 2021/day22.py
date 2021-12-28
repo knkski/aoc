@@ -1,4 +1,5 @@
-from math import prod
+from operator import mul
+from functools import reduce
 
 
 def parse(line):
@@ -32,16 +33,13 @@ def calc(bounds=None):
             continue
 
         # Handle intersections with existing rectangles
-        rects += [
-            (-1 if val == 1 else 1, intersection)
-            for val, existing in rects
-            if (intersection := overlap(existing, rect))
-        ]
+        overlaps = [(val, overlap(existing, rect)) for val, existing in rects]
+        rects += [(-1 if val == 1 else 1, overlap) for val, overlap in overlaps if overlap]
 
         if op == "on":
             rects.append((1, rect))
 
-    return sum(val * prod(map(len, r)) for val, r in rects)
+    return sum(val * reduce(mul, map(len, r), 1) for val, r in rects)
 
 
 print(calc((range(-50, 51), range(-50, 51), range(-50, 51))))
